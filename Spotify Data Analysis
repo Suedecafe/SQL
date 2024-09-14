@@ -1,0 +1,30 @@
+
+--Top 5 artists by popularity
+SELECT artist_name, popularity
+FROM Spotifydata 
+ORDER BY popularity DESC
+LIMIT 5;
+
+--The 5 most unpopular songs
+SELECT track_name, popularity
+FROM Spotifydata
+ORDER BY popularity ASC
+LIMIT 5;
+
+--Artist with the longest song duration
+SELECT artist_name,track_name, duration_ms
+FROM Spotifydata 
+ORDER BY duration_ms DESC
+LIMIT 1;
+
+--Artist with the highest level of loudness
+SELECT artist_name, loudness
+FROM Spotifydata
+WHERE loudness = (SELECT MAX(loudness) FROM Spotifydata);
+
+--What's the average energy level, and average danceability for each artist and their songs
+SELECT AVG(energy), AVG(danceability), artist_name, track_name
+FROM Spotifydata
+GROUP BY artist_name, track_name;
+
+
